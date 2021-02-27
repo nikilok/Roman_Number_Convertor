@@ -9,9 +9,13 @@ class RomanNumerals {
   }
   // HashTable that holds the lookup by Roman numerals
   lookupByRoman = {};
+
   /**
    * Fn that converts a numeral to roman number
    * @param numeral number
+   *
+   * Time Complexity: O(n), Space Complexity: O(1), where n is the total number of characters
+   * in the input string(numeral).
    */
   toRoman(numeral: number): string | null {
     let currentPosition = numeral.toString().length;
@@ -42,6 +46,9 @@ class RomanNumerals {
   /**
    * Fn that converts a roman string, to the numeric number
    * @param roman string
+   *
+   * Time Complexity: O(n), Space Complexity: O(1), where n is the total number of characters
+   * in the input string(roman).
    */
   fromRoman(roman: string): number {
     let lastLongestMatch = 0;
