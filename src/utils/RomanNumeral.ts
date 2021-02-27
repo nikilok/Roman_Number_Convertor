@@ -59,6 +59,7 @@ class RomanNumerals {
     let result = 0;
     let base = 1;
 
+    roman = roman.toUpperCase();
     while (currentNumber <= roman.length) {
       const currentSubString = roman.substring(0, currentNumber);
       if (currentSubString.length > 0) {

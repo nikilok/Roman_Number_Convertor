@@ -55,6 +55,7 @@ describe("Roman to Numeral", () => {
     ["(MM)(CCC)", 2300000],
     ["(CC)(XC)DCCCXC", 290890],
     ["(MMM)(CD)(XXX)MMDCCXII", 3432712],
+    ["(mmm)(cd)(xxx)mmdccxii", 3432712],
     // Invalid Romans
     ["ABC", 0],
     ["MMMABC", 0],
