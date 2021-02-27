@@ -57,7 +57,9 @@ describe("Roman to Numeral", () => {
     ["(MMM)(CD)(XXX)MMDCCXII", 3432712],
     // Invalid Romans
     ["ABC", 0],
-    // ["MMMABC", 0],
+    ["MMMABC", 3000],
+    ["IIII", 3],
+    ["VVV", 5],
   ];
 
   test.each<TestCase>(TEST_CASES)(

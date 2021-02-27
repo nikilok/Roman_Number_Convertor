@@ -45,7 +45,8 @@ class RomanNumerals {
    */
   fromRoman(roman: string): number {
     let lastLongestMatch = 0;
-    let lastPower = 0;
+    let lastPower = Infinity;
+    let lastValidPower = Infinity;
     let lastNumericValue = 0;
     let currentNumber = 1;
     let result = 0;
@@ -65,10 +66,16 @@ class RomanNumerals {
             base = lastPower > 1 ? 10 : 1;
           }
         } else if (lastLongestMatch > 0) {
-          result += lastNumericValue * Math.pow(base, lastPower - 1);
-          roman = roman.slice(currentNumber - 1);
-          currentNumber = 0;
-          lastLongestMatch = 0;
+          if (lastValidPower === Infinity) {
+            lastValidPower = lastPower + 1;
+          }
+          if (lastPower < lastValidPower) {
+            result += lastNumericValue * Math.pow(base, lastPower - 1);
+            roman = roman.slice(currentNumber - 1);
+            currentNumber = 0;
+            lastLongestMatch = 0;
+            lastValidPower = lastPower;
+          }
         }
       }
 
@@ -76,7 +83,7 @@ class RomanNumerals {
     }
 
     // Handle the last matched longest roman string
-    if (lastLongestMatch > 0) {
+    if (lastLongestMatch > 0 && lastPower < lastValidPower) {
       result += lastNumericValue * Math.pow(base, lastPower - 1);
     }
     return result;
