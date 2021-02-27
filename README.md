@@ -6,6 +6,10 @@ An app that converts roman numerals to numerals and vice versa.
 
 In the project directory, you can run:
 
+### `yarn`
+
+Install all packages and dependencies.
+
 ### `yarn start`
 
 Runs the app in the development mode.\
@@ -28,3 +32,11 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### Screenshots
+
+![Home Page](screenshots/numeral-roman.png)
+![Home Page](screenshots/roman-numeral.png)
+![Home Page](screenshots/large-numeral-roman.png)
+![Home Page](screenshots/numeral-error.png)
+![Home Page](screenshots/roman-error.png)
