@@ -6,6 +6,7 @@ function App() {
   const [value, setValue] = useState("");
   const [output, setOutput] = useState("");
   const [isOutBound, setIsOutBound] = useState(false);
+  const [isFaultyRoman, setIsFaultyRoman] = useState(false);
   const [romanNumber, setRomanNumber] = useState<RomanNumerals>();
 
   const changeHandler = (event: any) => {
@@ -24,25 +25,21 @@ function App() {
     if (romanNumber && value.length > 0) {
       //@ts-ignore
       if (isNaN(value)) {
-        // console.log("Not a number");
         // This can be treated as a Roman Numeral
         const numeral = romanNumber.fromRoman(value);
         if (numeral > 0) {
-          setIsOutBound(false);
+          setIsFaultyRoman(false);
           setOutput(numeral.toString());
         } else {
-          setIsOutBound(true);
+          setIsFaultyRoman(true);
         }
       } else {
-        // console.log("Is a number");
         // This can be treated as a Numeric number
-
         const roman = romanNumber.toRoman(parseInt(value));
         if (roman) {
           setIsOutBound(false);
           setOutput(roman);
         } else {
-          console.log("You got null");
           setIsOutBound(true);
         }
       }
@@ -63,10 +60,16 @@ function App() {
           autoFocus
         />
 
-        {output && !isOutBound && <div className="output">{output}</div>}
+        {output && !isOutBound && !isFaultyRoman && (
+          <div className="output">{output}</div>
+        )}
 
         {isOutBound && (
           <div className="outbound">Enter a number between 1 and 3,999,999</div>
+        )}
+
+        {isFaultyRoman && (
+          <div className="outbound">You entered an invalid roman number</div>
         )}
       </div>
     </>

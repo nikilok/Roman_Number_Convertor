@@ -75,6 +75,8 @@ class RomanNumerals {
             currentNumber = 0;
             lastLongestMatch = 0;
             lastValidPower = lastPower;
+          } else {
+            return 0;
           }
         }
       }
@@ -85,6 +87,8 @@ class RomanNumerals {
     // Handle the last matched longest roman string
     if (lastLongestMatch > 0 && lastPower < lastValidPower) {
       result += lastNumericValue * Math.pow(base, lastPower - 1);
+    } else {
+      return 0;
     }
     return result;
   }
