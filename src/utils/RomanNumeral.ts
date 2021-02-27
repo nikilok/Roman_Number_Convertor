@@ -13,11 +13,16 @@ class RomanNumerals {
 
     for (const char of numeral.toString()) {
       if (char !== "0") {
-        //@ts-ignore
-        const lookupData = hashTable[currentPosition][char];
-        if (lookupData) {
-          romanString += lookupData;
-        } else {
+        try {
+          //@ts-ignore
+          const lookupData = hashTable[currentPosition][char];
+          if (lookupData) {
+            romanString += lookupData;
+          } else {
+            return null;
+          }
+        } catch (e) {
+          // Handle out of bounds
           return null;
         }
       }
