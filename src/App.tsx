@@ -6,23 +6,37 @@ function App() {
   const [value, setValue] = useState("");
   const [output, setOutput] = useState("");
   const [isOutBound, setIsOutBound] = useState(false);
+  const [romanNumber, setRomanNumber] = useState<RomanNumerals>();
 
   const changeHandler = (event: any) => {
     const value = event.target.value;
     setValue(value);
   };
 
-  const romanNumber = new RomanNumerals();
+  useEffect(() => {
+    // Initialize an instance of RomanNumerals
+    // when the page loads once
+    //@ts-ignore
+    setRomanNumber(new RomanNumerals());
+  }, []);
 
   useEffect(() => {
-    //@ts-ignore
-    if (isNaN(value)) {
-      // console.log("Not a number");
-      // This can be treated as a Roman Numeral
-    } else {
-      // console.log("Is a number");
-      // This can be treated as a Numeric number
-      if (value.length > 0) {
+    if (romanNumber && value.length > 0) {
+      //@ts-ignore
+      if (isNaN(value)) {
+        // console.log("Not a number");
+        // This can be treated as a Roman Numeral
+        const numeral = romanNumber.fromRoman(value);
+        if (numeral > 0) {
+          setIsOutBound(false);
+          setOutput(numeral.toString());
+        } else {
+          setIsOutBound(true);
+        }
+      } else {
+        // console.log("Is a number");
+        // This can be treated as a Numeric number
+
         const roman = romanNumber.toRoman(parseInt(value));
         if (roman) {
           setIsOutBound(false);
@@ -31,11 +45,11 @@ function App() {
           console.log("You got null");
           setIsOutBound(true);
         }
-      } else {
-        setOutput("");
       }
+    } else {
+      setOutput("");
     }
-  }, [value]);
+  }, [value, romanNumber]);
 
   return (
     <>
