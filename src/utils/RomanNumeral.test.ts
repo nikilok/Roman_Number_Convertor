@@ -61,6 +61,7 @@ describe("Roman to Numeral", () => {
     ["MMMABC", 0],
     ["IIII", 0],
     ["VVV", 0],
+    ["2`*@#@)#*@3", 0],
   ];
 
   test.each<TestCase>(TEST_CASES)(

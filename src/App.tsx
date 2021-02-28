@@ -14,10 +14,19 @@ function App() {
     setValue(value);
   };
 
+  const toggleError = (mode: "Roman" | "Numeral", isDisplayed: boolean) => {
+    if (mode === "Roman") {
+      setIsFaultyRoman(isDisplayed);
+      setIsOutBound(false);
+    } else {
+      setIsOutBound(isDisplayed);
+      setIsFaultyRoman(false);
+    }
+  };
+
   useEffect(() => {
     // Initialize an instance of RomanNumerals
     // when the page loads once
-    //@ts-ignore
     setRomanNumber(new RomanNumerals());
   }, []);
 
@@ -28,23 +37,24 @@ function App() {
         // This can be treated as a Roman Numeral
         const numeral = romanNumber.fromRoman(value);
         if (numeral > 0) {
-          setIsFaultyRoman(false);
+          toggleError("Roman", false);
           setOutput(numeral.toString());
         } else {
-          setIsFaultyRoman(true);
+          toggleError("Roman", true);
         }
       } else {
         // This can be treated as a Numeric number
         const roman = romanNumber.toRoman(parseInt(value));
         if (roman) {
-          setIsOutBound(false);
+          toggleError("Numeral", false);
           setOutput(roman);
         } else {
-          setIsOutBound(true);
+          toggleError("Numeral", true);
         }
       }
     } else {
       setOutput("");
+      toggleError("Roman", false);
     }
   }, [value, romanNumber]);
 
