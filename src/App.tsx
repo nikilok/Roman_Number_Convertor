@@ -8,6 +8,7 @@ function App() {
   const [isOutBound, setIsOutBound] = useState(false);
   const [isFaultyRoman, setIsFaultyRoman] = useState(false);
   const [romanNumber, setRomanNumber] = useState<RomanNumerals>();
+  const [indicator, setIndicator] = useState("");
 
   const changeHandler = (event: any) => {
     const value = event.target.value;
@@ -38,6 +39,7 @@ function App() {
         const numeral = romanNumber.fromRoman(value);
         if (numeral > 0) {
           toggleError("Roman", false);
+          setIndicator("Numeric");
           setOutput(numeral.toString());
         } else {
           toggleError("Roman", true);
@@ -47,6 +49,7 @@ function App() {
         const roman = romanNumber.toRoman(parseInt(value));
         if (roman) {
           toggleError("Numeral", false);
+          setIndicator("Roman");
           setOutput(roman);
         } else {
           toggleError("Numeral", true);
@@ -71,7 +74,10 @@ function App() {
         />
 
         {output && !isOutBound && !isFaultyRoman && (
-          <div className="output">{output}</div>
+          <div className="output">
+            <div className="indicator">{indicator}</div>
+            {output}
+          </div>
         )}
 
         {isOutBound && (

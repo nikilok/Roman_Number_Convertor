@@ -1,5 +1,5 @@
 .container {
-  width: 300px;
+  width: 400px;
   background-color: #4c8bf5;
   border: 1px solid #000000;
   margin: 100px auto;
@@ -11,14 +11,24 @@
 }
 
 .container input {
-  font-family: serif;
+  font-family: "serif";
   height: 40px;
   width: 100%;
   font-size: 1.2rem;
   text-transform: uppercase;
+  outline: none;
+  border: 1px solid #000000;
+  box-shadow: 0px;
+  transition: 0.5s;
+}
+
+.container input:focus {
+  -webkit-box-shadow: 5px 20px 17px -12px rgba(0, 0, 0, 0.38);
+  box-shadow: 5px 20px 17px -12px rgba(0, 0, 0, 0.38);
 }
 
 .container .output {
+  position: relative;
   font-family: serif;
   background-color: white;
   font-size: 3rem;
@@ -27,12 +37,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10px 5px;
+  text-align: center;
   margin-top: 20px;
   min-height: 80px;
   -webkit-box-shadow: 5px 20px 17px -12px rgba(0, 0, 0, 0.38);
   box-shadow: 5px 20px 17px -12px rgba(0, 0, 0, 0.38);
 }
 
+.container .output .indicator {
+  font-family: "Helvetica Neue";
+  font-size: 0.7rem;
+  position: absolute;
+  background-color: #dddddd;
+  font-weight: bold;
+  color: black;
+  text-transform: uppercase;
+  border-top-left-radius: 5px;
+  bottom: 0px;
+  right: 0px;
+  padding: 3px;
+}
 .container .outbound {
   background-color: pink;
   color: red;
