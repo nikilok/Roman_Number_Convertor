@@ -1,4 +1,4 @@
-# OptioPay_Trial_App
+# Roman Number Convertor
 
 An app that converts roman numerals to numerals and vice versa.
 
